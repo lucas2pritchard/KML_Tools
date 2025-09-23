@@ -1,13 +1,14 @@
 import xml.etree.ElementTree as ET
+from tkinter import simpledialog
 
-# Input and output file paths
-input_kml_file = "Heading_Corrected_2_1_height.kml"
-output_kml_file = "Heading_Corrected_2_1_height_reduced.kml"
 
-def remove_points(input_file, output_file, num_to_remove):
+def edit_kml(input_file):
     # Parse the KML file
+    output_file = input_file[:-4] + "_DP_RM.kml"
     tree = ET.parse(input_file)
+    num_to_remove = int(simpledialog.askstring("Input", "How many points do you want to remove?"))
     root = tree.getroot()
+
 
     # Define the KML namespace
     namespace = {"kml": "http://www.opengis.net/kml/2.2"}
@@ -38,9 +39,3 @@ def remove_points(input_file, output_file, num_to_remove):
     # Write the updated KML to the output file
     tree.write(output_file, encoding="utf-8", xml_declaration=True)
     print(f"Updated KML saved to {output_file}")
-
-# Ask user for the number of points to remove
-num_to_remove = int(input("Enter the number of points to remove from each set of 10: "))
-
-# Run the function
-remove_points(input_kml_file, output_kml_file, num_to_remove)

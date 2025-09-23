@@ -1,7 +1,8 @@
 from xml.dom import minidom
 
 
-def remove_duplicate_points(input_file, output_file):
+def edit_kml(input_file):
+    output_file = input_file[:-4] + "_DP_RM.kml"
     # Parse the KML file
     kml_doc = minidom.parse(input_file)
 
@@ -35,9 +36,3 @@ def remove_duplicate_points(input_file, output_file):
     # Write the modified KML to the output file
     with open(output_file, "w") as f:
         kml_doc.writexml(f, indent="  ", addindent="  ", newl="\n")
-
-
-# Example usage
-input_kml = "Tunnel_2_Port.kml"  # Replace with your input KML file path
-output_kml = input_kml[:-4] + "_DP_RM.kml"  # Replace with your desired output KML file path
-remove_duplicate_points(input_kml, output_kml)
