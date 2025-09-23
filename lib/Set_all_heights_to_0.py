@@ -1,7 +1,8 @@
 from xml.dom import minidom
+from tkinter import messagebox
 
-
-def modify_kml(input_file, output_file):
+def edit_kml(input_file):
+    output_file = input_file[:-4] + "_DP_RM.kml"
     # Parse the KML file
     kml_doc = minidom.parse(input_file)
 
@@ -34,9 +35,4 @@ def modify_kml(input_file, output_file):
     # Write the modified KML to the output file
     with open(output_file, "w") as f:
         kml_doc.writexml(f, indent="  ", addindent="  ", newl="\n")
-
-
-# Example usage
-input_kml = "TMF_2_PORT_Final_WGS84.kml"  # Replace with your input KML file path
-output_kml = "TMF_2_PORT_Final_WGS84_Zero_H.kml"  # Replace with your desired output KML file path
-modify_kml(input_kml, output_kml)
+    messagebox.showinfo("Status", f"Updated KML saved to {output_file}")

@@ -1,9 +1,7 @@
 import xml.etree.ElementTree as ET
+from tkinter import messagebox
 
-# Input KML file path
-input_kml_file = "Heading_Corrected_2_1_height_reduced.kml"
-
-def count_data_points_in_kml(input_file):
+def edit_kml(input_file):
     # Parse the KML file
     tree = ET.parse(input_file)
     root = tree.getroot()
@@ -28,8 +26,5 @@ def count_data_points_in_kml(input_file):
         # Add the number of points in this <coordinates> tag to the total
         total_points += len(coordinates)
 
-    print(f"Total number of data points in the KML file: {total_points}")
+    messagebox.showinfo("Status", f"Total number of data points in the KML file: {total_points}")
     return total_points
-
-# Run the function
-count_data_points_in_kml(input_kml_file)

@@ -1,5 +1,5 @@
 from xml.dom import minidom
-
+from tkinter import messagebox
 
 def edit_kml(input_file):
     output_file = input_file[:-4] + "_DP_RM.kml"
@@ -36,3 +36,4 @@ def edit_kml(input_file):
     # Write the modified KML to the output file
     with open(output_file, "w") as f:
         kml_doc.writexml(f, indent="  ", addindent="  ", newl="\n")
+    messagebox.showinfo("Status", f"Updated KML saved to {output_file}")

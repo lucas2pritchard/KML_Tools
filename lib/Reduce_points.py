@@ -1,12 +1,13 @@
 import xml.etree.ElementTree as ET
 from tkinter import simpledialog
+from tkinter import messagebox
 
 
 def edit_kml(input_file):
     # Parse the KML file
     output_file = input_file[:-4] + "_DP_RM.kml"
     tree = ET.parse(input_file)
-    num_to_remove = int(simpledialog.askstring("Input", "How many points do you want to remove?"))
+    num_to_remove = int(simpledialog.askstring("Input", "How many points would you like to remove from each set of 10?"))
     root = tree.getroot()
 
 
@@ -38,4 +39,4 @@ def edit_kml(input_file):
 
     # Write the updated KML to the output file
     tree.write(output_file, encoding="utf-8", xml_declaration=True)
-    print(f"Updated KML saved to {output_file}")
+    messagebox.showinfo("Status", f"Updated KML saved to {output_file}")
