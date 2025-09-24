@@ -2,7 +2,7 @@ import os
 import importlib
 import tkinter as tk
 from tkinter import filedialog, messagebox
-import simplekml
+import xml.etree.ElementTree as ET
 
 def select_directory():
     folder_path = filedialog.askdirectory(title="Select Folder")
